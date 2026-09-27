@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Grocery Stock Management">
+
+    <featureManager>
+        <feature>restfulWS-3.1</feature>
+        <feature>jsonb-3.0</feature>
+        <feature>jsonp-2.1</feature>
+        <feature>cdi-4.0</feature>
+        <feature>persistence-3.1</feature>
+        <feature>beanValidation-3.0</feature>
+        <feature>servlet-6.0</feature>
+        <feature>jdbc-4.3</feature>
+        <feature>appSecurity-5.0</feature>
+        <feature>mpConfig-3.1</feature>
+        <feature>mpJwt-2.1</feature>
+        <feature>mpHealth-4.0</feature>
+        <feature>mpOpenAPI-3.1</feature>
+    </featureManager>
+
+    <variable name="DB_HOST" defaultValue="database"/>
+    <variable name="DB_PORT" defaultValue="5432"/>
+    <variable name="DB_NAME" defaultValue="grocery"/>
+    <variable name="DB_USER" defaultValue="grocery"/>
+    <variable name="DB_PASSWORD" defaultValue="grocery_local_dev"/>
+
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443"/>
+
+    <library id="postgresql-library">
+        <fileset dir="/opt/ol/wlp/usr/shared/resources" includes="postgresql.jar"/>
+    </library>
+
+    <dataSource id="groceryDataSource" jndiName="jdbc/grocery" transactional="true">
+        <jdbcDriver libraryRef="postgresql-library"/>
+        <properties.postgresql serverName="${DB_HOST}"
+                               portNumber="${DB_PORT}"
+                               databaseName="${DB_NAME}"
+                               user="${DB_USER}"
+                               password="${DB_PASSWORD}"/>
+        <connectionManager maxPoolSize="20" minPoolSize="2"/>
+    </dataSource>
+
+    <!-- EclipseLink runs schema generation outside the JTA transaction, so it needs its own connection. -->
+    <dataSource id="groceryDataSourceNonJta" jndiName="jdbc/groceryNonJta" transactional="false">
+        <jdbcDriver libraryRef="postgresql-library"/>
+        <properties.postgresql serverName="${DB_HOST}"
+                               portNumber="${DB_PORT}"
+                               databaseName="${DB_NAME}"
+                               user="${DB_USER}"
+                               password="${DB_PASSWORD}"/>
+        <connectionManager maxPoolSize="5" minPoolSize="1"/>
+    </dataSource>
+
+    <applicationManager autoExpand="true"/>
+    <webApplication location="grocery-api.war" contextRoot="/"/>
+
+</server>
