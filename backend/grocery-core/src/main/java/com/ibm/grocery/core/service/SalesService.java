@@ -12,7 +12,7 @@ import com.ibm.grocery.domain.Item;
 import com.ibm.grocery.domain.Sale;
 import com.ibm.grocery.domain.SaleLine;
 import com.ibm.grocery.domain.StockMovementType;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
@@ -25,7 +25,7 @@ import java.util.UUID;
  * Recording a sale and reducing stock happen in one transaction, so a failed line never leaves
  * partially decremented stock behind.
  */
-@ApplicationScoped
+@Singleton
 public class SalesService {
 
     private static final int DEFAULT_LIST_LIMIT = 50;

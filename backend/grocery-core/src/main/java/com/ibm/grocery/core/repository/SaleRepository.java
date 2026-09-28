@@ -1,7 +1,7 @@
 package com.ibm.grocery.core.repository;
 
 import com.ibm.grocery.domain.Sale;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-@ApplicationScoped
+@Singleton
 public class SaleRepository {
 
     @PersistenceContext(unitName = "groceryPU")

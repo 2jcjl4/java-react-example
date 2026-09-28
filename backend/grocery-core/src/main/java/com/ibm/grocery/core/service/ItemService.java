@@ -7,12 +7,12 @@ import com.ibm.grocery.core.exception.ResourceNotFoundException;
 import com.ibm.grocery.core.mapper.ItemMapper;
 import com.ibm.grocery.core.repository.ItemRepository;
 import com.ibm.grocery.domain.Item;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import java.util.List;
 
-@ApplicationScoped
+@Singleton
 public class ItemService {
 
     @Inject

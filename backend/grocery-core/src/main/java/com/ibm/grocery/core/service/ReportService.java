@@ -5,14 +5,14 @@ import com.ibm.grocery.contracts.LowStockItemDto;
 import com.ibm.grocery.core.repository.ItemRepository;
 import com.ibm.grocery.core.repository.SaleRepository;
 import com.ibm.grocery.domain.Item;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.inject.Inject;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.List;
 
-@ApplicationScoped
+@Singleton
 public class ReportService {
 
     @Inject

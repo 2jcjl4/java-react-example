@@ -2,14 +2,14 @@
 
 A small grocery store stock management system built to demonstrate enterprise Java and React skills.
 
-- **Backend** - Java 21, Jakarta EE 10 and MicroProfile 6 on **Open Liberty** (IBM runtime, IBM Container Registry base image), Maven multi-module build.
+- **Backend** - Java 21 and **Micronaut** on a Maven multi-module build. The Micronaut runtime serves the existing REST contract and uses PostgreSQL through the shared domain services.
 - **Frontend** - React 18 with Vite. Plain React, no meta-framework.
 - **Database** - PostgreSQL via JPA.
 - **Hosting** - Docker Desktop, local only.
 
 ## Features
 
-- JWT based login using MicroProfile JWT, RS256 signed. The key pair is generated during the image build.
+- JWT based login using Micronaut Security JWT.
 - Three access levels enforced with `@RolesAllowed`:
   - `ADMIN` - everything, including user administration.
   - `MANAGER` - items, stock movements, sales history.
@@ -28,6 +28,7 @@ docker compose up -d
 
 - Frontend: http://localhost:3000
 - API: http://localhost:9080/api
+- Micronaut status: http://localhost:9080/micronaut/status
 - Health: http://localhost:9080/health
 
 The first startup creates an administrator from `SEED_ADMIN_USERNAME` and `SEED_ADMIN_PASSWORD`

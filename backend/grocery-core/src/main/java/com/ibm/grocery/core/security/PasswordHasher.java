@@ -1,6 +1,6 @@
 package com.ibm.grocery.core.security;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -12,7 +12,7 @@ import javax.crypto.spec.PBEKeySpec;
 /**
  * PBKDF2 password hashing. Stored format is {@code iterations:salt:hash}, both parts Base64 encoded.
  */
-@ApplicationScoped
+@Singleton
 public class PasswordHasher {
 
     private static final String ALGORITHM = "PBKDF2WithHmacSHA256";

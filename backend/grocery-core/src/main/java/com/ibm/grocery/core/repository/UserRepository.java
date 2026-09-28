@@ -1,13 +1,13 @@
 package com.ibm.grocery.core.repository;
 
 import com.ibm.grocery.domain.AppUser;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
-@ApplicationScoped
+@Singleton
 public class UserRepository {
 
     @PersistenceContext(unitName = "groceryPU")

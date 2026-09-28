@@ -15,6 +15,7 @@
         <module>grocery-domain</module>
         <module>grocery-core</module>
         <module>grocery-api</module>
+        <module>grocery-micronaut</module>
     </modules>
 
     <properties>
@@ -24,6 +25,7 @@
         <microprofile.version>6.1</microprofile.version>
         <postgresql.version>42.7.4</postgresql.version>
         <junit.version>5.10.2</junit.version>
+        <micronaut.version>4.6.3</micronaut.version>
     </properties>
 
     <dependencyManagement>
@@ -61,6 +63,13 @@
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.micronaut.platform</groupId>
+                <artifactId>micronaut-platform</artifactId>
+                <version>${micronaut.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

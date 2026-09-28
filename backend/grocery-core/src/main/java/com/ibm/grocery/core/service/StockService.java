@@ -10,13 +10,13 @@ import com.ibm.grocery.core.repository.StockMovementRepository;
 import com.ibm.grocery.domain.Item;
 import com.ibm.grocery.domain.StockMovement;
 import com.ibm.grocery.domain.StockMovementType;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Locale;
 
-@ApplicationScoped
+@Singleton
 public class StockService {
 
     private static final int DEFAULT_HISTORY_LIMIT = 100;

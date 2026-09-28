@@ -1,0 +1,44 @@
+micronaut:
+  application:
+    name: grocery-micronaut
+  server:
+    port: 9080
+  router:
+    static-resources:
+      default:
+        enabled: false
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${JWT_SECRET:grocery-local-jwt-secret-change-me}
+
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+
+# The existing domain model is still used while the HTTP runtime moves to Micronaut.
+jpa:
+  default:
+    entity-scan:
+      packages:
+        - com.ibm.grocery.domain
+    properties:
+      hibernate:
+        hbm2ddl.auto: update
+
+datasources:
+  default:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:grocery}
+    username: ${DB_USER:grocery}
+    password: ${DB_PASSWORD:grocery_local_dev}
+    driver-class-name: org.postgresql.Driver
+    maximum-pool-size: 20
+
+seed:
+  admin-username: ${SEED_ADMIN_USERNAME:admin}
+  admin-password: ${SEED_ADMIN_PASSWORD:Admin123!}

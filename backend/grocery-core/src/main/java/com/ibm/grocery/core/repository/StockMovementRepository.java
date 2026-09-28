@@ -1,13 +1,13 @@
 package com.ibm.grocery.core.repository;
 
 import com.ibm.grocery.domain.StockMovement;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 
-@ApplicationScoped
+@Singleton
 public class StockMovementRepository {
 
     @PersistenceContext(unitName = "groceryPU")

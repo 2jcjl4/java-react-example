@@ -6,16 +6,16 @@ import com.ibm.grocery.core.security.PasswordHasher;
 import com.ibm.grocery.domain.AppUser;
 import com.ibm.grocery.domain.Item;
 import com.ibm.grocery.domain.Role;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Logger;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
+import io.micronaut.context.annotation.Value;
 
 /** Creates the first administrator and a small catalogue so a fresh database is usable. */
-@ApplicationScoped
+@Singleton
 public class DataSeedService {
 
     private static final Logger LOGGER = Logger.getLogger(DataSeedService.class.getName());
@@ -30,11 +30,11 @@ public class DataSeedService {
     PasswordHasher passwordHasher;
 
     @Inject
-    @ConfigProperty(name = "SEED_ADMIN_USERNAME", defaultValue = "admin")
+    @Value("${seed.admin-username:admin}")
     String adminUsername;
 
     @Inject
-    @ConfigProperty(name = "SEED_ADMIN_PASSWORD", defaultValue = "Admin123!")
+    @Value("${seed.admin-password:Admin123!}")
     String adminPassword;
 
     @Transactional
